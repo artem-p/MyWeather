@@ -4,4 +4,5 @@
         <xliff:g id="temp_celsium">%1.0f</xliff:g> °C
     </string>
     <string name="temp_default">15 °C</string>
+    <string name="weather_default">Cloudy</string>
 </resources>

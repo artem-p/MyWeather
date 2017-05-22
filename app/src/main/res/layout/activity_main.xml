@@ -15,15 +15,29 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/main_weather_icon_margin_top"
-        android:id="@+id/imageView" />
+        android:id="@+id/weatherIcon" />
 
     <TextView
+        android:id="@+id/tvTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/temp_default"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
         android:layout_marginTop="@dimen/margin_small"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintRight_toLeftOf="@+id/imageView"
-        app:layout_constraintLeft_toRightOf="@+id/imageView"/>
+        app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
+        app:layout_constraintRight_toLeftOf="@+id/weatherIcon"
+        app:layout_constraintLeft_toRightOf="@+id/weatherIcon"
+        />
+
+    <TextView
+        android:id="@+id/tvWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/tvTemperature"
+        app:layout_constraintRight_toLeftOf="@+id/tvTemperature"
+        app:layout_constraintLeft_toRightOf="@+id/tvTemperature"
+        android:text="@string/weather_default"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        />
 </android.support.constraint.ConstraintLayout>
