@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="@dimen/main_weather_icon"
             android:layout_height="@dimen/main_weather_icon"
-            android:src="@drawable/weather_cloudy"
+            android:src="@drawable/cloudy"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"

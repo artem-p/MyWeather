@@ -8,8 +8,9 @@ class Weather() {
     /**
      * Transform to data class for binding
      */
-    fun toWeatherData() {
-
+    fun toWeatherData(): WeatherData {
+        // stub
+        return WeatherData(14.5, "cloudy", "Cloudy")
     }
 }
 
@@ -17,7 +18,7 @@ class Weather() {
 /**
  * Data class only for databinding
  * */
-data class WeatherData(val temperature: Float, val weatherIconName: String,
+data class WeatherData(val temperature: Double, val weatherIconName: String,
                               val weatherdescription: String) {
 
 }

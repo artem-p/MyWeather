@@ -11,6 +11,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val weather: Weather = Weather()
+        val weatherData: WeatherData = weather.toWeatherData()
+
+        binding.tvTemperature.setText(weatherData.temperature.toString())
         // todo finish binding with example object
     }
 }
