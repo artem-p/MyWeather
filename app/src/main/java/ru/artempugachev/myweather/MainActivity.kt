@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         val weather: Weather = Weather()
         val weatherData: WeatherData = weather.toWeatherData()
 
+//        binding.
         binding.tvTemperature.setText(weatherData.temperature.toString())
+
         // todo finish binding with example object
     }
 }
