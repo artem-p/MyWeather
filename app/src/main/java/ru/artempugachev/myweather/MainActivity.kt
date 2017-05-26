@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         // hope it will be fixed
         binding.tvTemperature.setText(getString(R.string.format_temp_celsium,
                                                             weatherData.temperature))
+        binding.tvWeather.setText(weatherData.weatherdescription)
+        binding.weatherIcon.setImageResource(weatherData.weatherIcon)
 
 //        binding.tvTemperature.setText(weatherData.temperature.toString())
         // todo finish binding with example object
