@@ -14,9 +14,14 @@ class MainActivity : AppCompatActivity() {
         val weather: Weather = Weather()
         val weatherData: WeatherData = weather.toWeatherData()
 
-//        binding.
-        binding.tvTemperature.setText(weatherData.temperature.toString())
+        // README
+        // we cannot use databinding with data variable in xml file
+        // due to annotations problem in kapt
+        // hope it will be fixed
+        binding.tvTemperature.setText(getString(R.string.format_temp_celsium,
+                                                            weatherData.temperature))
 
+//        binding.tvTemperature.setText(weatherData.temperature.toString())
         // todo finish binding with example object
     }
 }
