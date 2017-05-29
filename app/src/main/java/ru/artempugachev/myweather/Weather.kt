@@ -10,7 +10,7 @@ class Weather() {
      */
     fun toWeatherData(): WeatherData {
         // stub
-        return WeatherData(14.5, R.drawable.cloudy, "Cloudy")
+        return WeatherData(14.4, R.drawable.cloudy, "Cloudy")
     }
 }
 
