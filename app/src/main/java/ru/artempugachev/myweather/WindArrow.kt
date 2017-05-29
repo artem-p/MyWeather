@@ -23,8 +23,15 @@ class WindArrow(context: Context) : FrameLayout(context) {
         setDirection(windDir)
     }
 
+
+    fun setDirection(direction: Int) {
+        val arrowImageView: ImageView = findViewById(R.id.windArrowImageView) as ImageView
+        arrowImageView.setImageResource(getArrowResByDirection(direction))
+    }
+
+
     /**
-     * Set wind arrow by wind direction
+     * Get wind arrow by wind direction
      * 338 <= "N" <= 23
      * 24 <= "NE" <= 67
      * 68 <= "E" <= 112
@@ -34,7 +41,7 @@ class WindArrow(context: Context) : FrameLayout(context) {
      * 248 <= "W" <= 292
      * 293 <= "NW" <= 337
      * */
-    fun setDirection(direction: Int): Int {
+    fun getArrowResByDirection(direction: Int): Int {
         // todo test
         val DIR_MIN = 0
         val DIR_MAX = 359
@@ -70,10 +77,6 @@ class WindArrow(context: Context) : FrameLayout(context) {
             in NORTH_MIN..DIR_MAX -> windArrowResource = R.drawable.wind_north
             else -> windArrowResource = R.drawable.wind_north
         }
-
-
-        val arrowImageView: ImageView = findViewById(R.id.windArrowImageView) as ImageView
-        arrowImageView.setImageResource(R.drawable.wind_south_west)
 
         return windArrowResource
     }
