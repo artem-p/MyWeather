@@ -14,14 +14,7 @@ class MainActivity : AppCompatActivity() {
         val weather: Weather = Weather()
         val weatherData: WeatherData = weather.toWeatherData()
 
-        // README
-        // we cannot use databinding with data variable in xml file
-        // due to annotations problem in kapt
-        // hope it will be fixed
-        binding.tvTemperature.setText(getString(R.string.format_temp_celsium,
-                                                            weatherData.temperature))
-        binding.tvWeather.setText(weatherData.weatherdescription)
-        binding.weatherIcon.setImageResource(weatherData.weatherIcon)
+        binding.weatherData = weatherData
     }
 }
 

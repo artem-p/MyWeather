@@ -10,7 +10,7 @@ class Weather() {
      */
     fun toWeatherData(): WeatherData {
         // stub
-        return WeatherData(14.4, R.drawable.cloudy, "Cloudy")
+        return WeatherData("14.4", R.drawable.cloudy, "Cloudy")
     }
 }
 
@@ -18,7 +18,7 @@ class Weather() {
 /**
  * Data class only for databinding
  * */
-data class WeatherData(val temperature: Double, val weatherIcon: Int,
-                              val weatherdescription: String) {
+data class WeatherData(val temperature: String, val weatherIcon: Int,
+                              val weatherDescription: String) {
 
 }

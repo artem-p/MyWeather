@@ -4,17 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:my_weather="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="weatherData" type="ru.artempugachev.myweather.WeatherData"/>
+    </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="ru.artempugachev.myweather.MainActivity">
 
 
-
         <ImageView
             android:layout_width="@dimen/main_weather_icon"
             android:layout_height="@dimen/main_weather_icon"
-            android:src="@drawable/cloudy"
+            android:src="@{weatherData.weatherIcon}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +29,7 @@
             android:id="@+id/tvTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temp_default"
+            android:text="@{weatherData.temperature.toString()}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
@@ -41,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTemperature"
             app:layout_constraintRight_toLeftOf="@+id/tvTemperature"
             app:layout_constraintLeft_toRightOf="@+id/tvTemperature"
-            android:text="@string/weather_default"
+            android:text="@{weatherData.weatherDescription}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             />
 
