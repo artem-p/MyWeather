@@ -13,7 +13,6 @@ class Wind(val speed: Double, val direction: Int) {
      * 293 <= "NW" <= 337
      * */
     fun toWindArrowResource(): Int {
-        // todo test
         val DIR_MIN = 0
         val DIR_MAX = 359
 

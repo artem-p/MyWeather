@@ -2,6 +2,7 @@ package ru.artempugachev.myweather
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.databinding.BindingAdapter
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -17,12 +18,11 @@ class WindArrow(context: Context) : FrameLayout(context) {
         inflater.inflate(R.layout.wind_arrow, this)
 
         val attrArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.WindArrow)
-        val windDir: Int = attrArray.getInt(R.styleable.WindArrow_wind_dir, 0)
+        val windDir: Int = attrArray.getInt(R.styleable.WindArrow_direction, 0)
         attrArray.recycle()
 
         setDirection(windDir)
     }
-
 
     fun setDirection(direction: Int) {
         val arrowImageView = findViewById(R.id.windArrowImageView) as ImageView

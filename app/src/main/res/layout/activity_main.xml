@@ -53,11 +53,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:id="@+id/windArrow"
             app:layout_constraintTop_toBottomOf="@id/tvWeather"
             app:layout_constraintRight_toLeftOf="@+id/tvWeather"
             app:layout_constraintLeft_toRightOf="@+id/tvWeather"
-            my_weather:wind_dir="0"
+            my_weather:direction="90"
             />
-
     </android.support.constraint.ConstraintLayout>
 </layout>
