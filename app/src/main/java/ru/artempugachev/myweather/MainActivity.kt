@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity() {
         val weatherData: WeatherData = weather.toWeatherData()
 
         binding.weatherData = weatherData
-
-        val windArrow = findViewById(R.id.windArrow) as WindArrow
-        windArrow.setDirection(weatherData.wind.direction)
-//        binding.windArrow.setDirection(weatherData.wind.direction)
     }
 }
 

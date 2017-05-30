@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvWeather"
             app:layout_constraintRight_toLeftOf="@+id/tvWeather"
             app:layout_constraintLeft_toRightOf="@+id/tvWeather"
-            my_weather:direction="90"
+            my_weather:direction="@{weatherData.wind.direction}"
             />
     </android.support.constraint.ConstraintLayout>
 </layout>

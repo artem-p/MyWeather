@@ -12,22 +12,21 @@ import android.widget.ImageView
  * Component for wind arrow
  */
 
-class WindArrow(context: Context) : FrameLayout(context) {
-    constructor(context: Context, attrs: AttributeSet?) : this(context) {
-        val inflater: LayoutInflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.wind_arrow, this)
-
-        val attrArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.WindArrow)
-        val windDir: Int = attrArray.getInt(R.styleable.WindArrow_direction, 0)
-        attrArray.recycle()
-
-        setDirection(windDir)
-    }
+class WindArrow(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
     fun setDirection(direction: Int) {
         val arrowImageView = findViewById(R.id.windArrowImageView) as ImageView
         val wind = Wind(0.0, direction)
         val arrowResource = wind.toWindArrowResource()
         arrowImageView.setImageResource(arrowResource)
+    }
+
+    init {
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+        inflater.inflate(R.layout.wind_arrow, this)
+        val attrArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.WindArrow)
+        val windDir: Int = attrArray.getInt(R.styleable.WindArrow_direction, 0)
+        attrArray.recycle()
+        setDirection(windDir)
     }
 }
