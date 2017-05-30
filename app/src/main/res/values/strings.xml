@@ -1,8 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">My Weather</string>
-    <string name="format_temp_celsium" translatable="false">
-        <xliff:g id="temp_celsium">%1.0f</xliff:g> °C
-    </string>
+    <string name="format_temp_celsius" translatable="false"> %1.0f °C</string>
     <string name="temp_default">15 °C</string>
     <string name="weather_default">Cloudy</string>
 </resources>
