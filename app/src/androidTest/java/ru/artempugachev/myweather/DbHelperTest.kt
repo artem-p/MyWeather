@@ -21,6 +21,7 @@ class DbHelperTest {
     @Test
     fun testCreateDb() {
         val dbHelper = WeatherDbHelper(context)
+        // todo stub
         assertEquals(4, 2 + 2)
     }
 
