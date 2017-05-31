@@ -20,14 +20,21 @@ val SQL_CREATE_WEATHER_TABLE = """CREATE TABLE ${WeatherContract.WeatherEntry.TA
 
                );     """
 
+val SQL_DELETE_TABLE = "DROP TABLE IF EXISTS ${WeatherContract.WeatherEntry.TABLE_NAME}"
+
 class WeatherDbHelper : SQLiteOpenHelper {
     constructor(context: Context): super(context, DATABASE_NAME, null, DATABASE_VERSION)
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(SQL_CREATE_WEATHER_TABLE)
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
+    /**
+     * As we use database only for cache, we can simply drop and recreate it
+     * */
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL(SQL_DELETE_TABLE)
+        onCreate(db)
+    }
 }
