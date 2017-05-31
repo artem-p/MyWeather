@@ -1,0 +1,33 @@
+package ru.artempugachev.myweather
+
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+
+val DATABASE_NAME = "myweather.db"
+val DATABASE_VERSION = 1
+val SQL_CREATE_WEATHER_TABLE = """CREATE TABLE ${WeatherContract.WeatherEntry.TABLE_NAME}
+               (${WeatherContract.WeatherEntry._ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+                ${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP} INTEGER NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_TEMPERATURE} REAL NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_FEELS_LIKE_TEMPERATURE} REAL NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_HUMIDITY} INTEGER NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_PRESSURE} REAL NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_WEATHER_CODE} INTEGER NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION} INTEGER NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_WIND_SPEED} REAL NOT NULL,
+                 UNIQUE (${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP}) ON CONFLICT REPLACE
+
+               );     """
+
+class WeatherDbHelper : SQLiteOpenHelper {
+    constructor(context: Context): super(context, DATABASE_NAME, null, DATABASE_VERSION)
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCreate(db: SQLiteDatabase?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+}
