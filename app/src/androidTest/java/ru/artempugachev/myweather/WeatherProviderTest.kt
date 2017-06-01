@@ -23,7 +23,7 @@ class WeatherProviderTest {
 
 
     fun deleteAllRows() {
-
+        context.contentResolver.delete(CONTENT_URI, null, null)
     }
 
 }

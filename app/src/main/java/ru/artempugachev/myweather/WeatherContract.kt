@@ -6,6 +6,9 @@ import android.provider.BaseColumns
 val AUTHORITY = "ru.artempugachev.myweather"
 val BASE_CONTENT_URI = Uri.parse("content://$AUTHORITY")
 val PATH_WEATHER = "weather"
+val CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+        .appendPath(PATH_WEATHER)
+        .build()
 
 class WeatherContract private constructor(){
     class WeatherEntry : BaseColumns {
