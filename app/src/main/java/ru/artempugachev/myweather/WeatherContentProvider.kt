@@ -26,6 +26,35 @@ class WeatherContentProvider : ContentProvider() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun bulkInsert(uri: Uri, values: Array<ContentValues>): Int {
+        val db = dbHelper.writableDatabase
+
+        when (uriMatcher.match(uri)) {
+            CODE_WEATHER -> {
+                db.beginTransaction()
+                var rowsInserted = 0
+                try {
+                    for (value in values) {
+                        val id = db.insert(WeatherContract.WeatherEntry.TABLE_NAME,
+                                null, value)
+                        if (id != -1L) {
+                            rowsInserted++
+                        }
+                    }
+                    db.setTransactionSuccessful()
+                } finally {
+                    db.endTransaction()
+                }
+                return rowsInserted
+            }
+
+            else -> {
+                return super.bulkInsert(uri, values)
+            }
+        }
+    }
+
+
     override fun insert(uri: Uri?, values: ContentValues?): Uri {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
