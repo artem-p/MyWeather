@@ -1,6 +1,7 @@
 package ru.artempugachev.myweather
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -21,8 +22,10 @@ class DbHelperTest {
     @Test
     fun testCreateDb() {
         val dbHelper = WeatherDbHelper(context)
-        // todo stub
-        assertEquals(4, 2 + 2)
+        val db: SQLiteDatabase = dbHelper.writableDatabase
+        val dbIsNotOpen: String = "Database should be open and it isn't"
+
+        assertEquals(dbIsNotOpen, true, db.isOpen)
     }
 
     fun deleteDb() {
