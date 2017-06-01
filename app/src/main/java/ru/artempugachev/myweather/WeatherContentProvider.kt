@@ -2,11 +2,24 @@ package ru.artempugachev.myweather
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
+val CODE_WEATHER = 100
+val CODE_WEATHER_WITH_TIME = 101
+
 class WeatherContentProvider : ContentProvider() {
     lateinit var dbHelper: WeatherDbHelper
+    val uriMatcher = buildUriMatcher()
+
+    private fun buildUriMatcher(): UriMatcher {
+        val matcher = UriMatcher(UriMatcher.NO_MATCH)
+        val authority = AUTHORITY
+        matcher.addURI(authority, PATH_WEATHER, CODE_WEATHER)
+        matcher.addURI(authority, "$PATH_WEATHER/#", CODE_WEATHER_WITH_TIME)
+        return matcher
+    }
 
     override fun onCreate(): Boolean {
         dbHelper = WeatherDbHelper(context)
