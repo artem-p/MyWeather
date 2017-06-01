@@ -71,8 +71,34 @@ class WeatherContentProvider : ContentProvider() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun delete(uri: Uri?, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>): Int {
+        val numRowsDeleted: Int
+
+        // if selection == null we delete all rows, but
+        // we won't know how many rows were deleted
+        // by passing "1" we can delete all rows and do know number of rows deleted
+        val selStr = selection ?: "1"
+
+        when (uriMatcher.match(uri)) {
+            CODE_WEATHER -> {
+                numRowsDeleted = dbHelper.writableDatabase.delete(
+                        WeatherContract.WeatherEntry.TABLE_NAME,
+                        selStr,
+                        selectionArgs
+                )
+            }
+
+            else -> {
+                throw UnsupportedOperationException("Unknown uri: $uri")
+            }
+        }
+
+        if (numRowsDeleted != 0) {
+            // notify about a change with this Uri
+            context.contentResolver.notifyChange(uri, null)
+        }
+        return numRowsDeleted
+
     }
 
     override fun getType(uri: Uri?): String {
