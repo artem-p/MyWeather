@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="ru.artempugachev.myweather"
+            android:name="ru.artempugachev.myweather.WeatherContentProvider"
+            android:exported="false">
+        </provider>
     </application>
 
 </manifest>

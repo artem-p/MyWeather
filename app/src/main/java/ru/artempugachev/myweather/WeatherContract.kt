@@ -1,6 +1,11 @@
 package ru.artempugachev.myweather
 
+import android.net.Uri
 import android.provider.BaseColumns
+
+val AUTHORITY = "ru.artempugachev.myweather"
+val BASE_CONTENT_URI = Uri.parse("content://$AUTHORITY")
+val PATH_WEATHER = "weather"
 
 class WeatherContract private constructor(){
     class WeatherEntry : BaseColumns {
