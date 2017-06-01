@@ -26,6 +26,10 @@ class WeatherContentProvider : ContentProvider() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+    /**
+     * Insert multiple rows (current weather + forecast)
+     * */
     override fun bulkInsert(uri: Uri, values: Array<ContentValues>): Int {
         val db = dbHelper.writableDatabase
 
