@@ -10,22 +10,38 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 class DbHelperTest {
     val context: Context = InstrumentationRegistry.getTargetContext()
+    val dbHelper: WeatherDbHelper
+    val db: SQLiteDatabase
+
+    init {
+        dbHelper = WeatherDbHelper(context)
+        db = dbHelper.writableDatabase
+    }
 
     @Before
     fun setUp() {
         deleteDb()
     }
 
+    /**
+     * Attempt to get db instance and check if it is open
+     * */
     @Test
     fun testCreateDb() {
-        val dbHelper = WeatherDbHelper(context)
-        val db: SQLiteDatabase = dbHelper.writableDatabase
-        val dbIsNotOpen: String = "Database should be open and it isn't"
+        assertEquals("Database should be open and it isn't", true, db.isOpen)
+    }
 
-        assertEquals(dbIsNotOpen, true, db.isOpen)
+
+    /**
+     * Add test vals to db and read it
+     * */
+    @Test
+    fun testDbWriteRead() {
+
     }
 
     fun deleteDb() {
