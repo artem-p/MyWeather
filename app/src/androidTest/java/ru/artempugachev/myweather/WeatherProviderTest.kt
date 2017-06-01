@@ -21,6 +21,10 @@ class WeatherProviderTest {
         deleteAllRows()
     }
 
+    @Test
+    fun testAddReadRows() {
+        // todo stub
+    }
 
     fun deleteAllRows() {
         context.contentResolver.delete(CONTENT_URI, null, null)
