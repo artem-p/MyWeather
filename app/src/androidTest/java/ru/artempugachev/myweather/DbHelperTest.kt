@@ -15,14 +15,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class DbHelperTest {
     val context: Context = InstrumentationRegistry.getTargetContext()
-    var dbHelper: WeatherDbHelper
-    var db: SQLiteDatabase
-
-    init {
-        dbHelper = WeatherDbHelper(context)
-        db = dbHelper.writableDatabase
-    }
-
+    lateinit var dbHelper: WeatherDbHelper
+    lateinit var db: SQLiteDatabase
 
     @Before
     fun setUp() {
