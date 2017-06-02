@@ -4,6 +4,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 
 val CODE_WEATHER = 100
@@ -66,7 +67,23 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     override fun query(uri: Uri?, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val db: SQLiteDatabase = dbHelper.writableDatabase
+        val cursor: Cursor
+        when (uriMatcher.match(uri)) {
+            CODE_WEATHER -> {
+                cursor = db.query(WeatherContract.WeatherEntry.TABLE_NAME,
+                        null,
+                        selection, selectionArgs,
+                        null, null, sortOrder)
+            }
+
+            else -> {
+                throw UnsupportedOperationException("Unknown uri: $uri")
+            }
+        }
+
+        cursor.setNotificationUri(context.contentResolver, uri)
+        return cursor
     }
 
     override fun update(uri: Uri?, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
