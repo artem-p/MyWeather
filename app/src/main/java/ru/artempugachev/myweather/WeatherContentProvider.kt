@@ -23,7 +23,7 @@ class WeatherContentProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         dbHelper = WeatherDbHelper(context)
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
 
