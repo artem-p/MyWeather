@@ -30,7 +30,7 @@ class WeatherContentProvider : ContentProvider() {
     /**
      * Insert multiple rows (current weather + forecast)
      * */
-    override fun bulkInsert(uri: Uri, values: Array<ContentValues>): Int {
+    override fun bulkInsert(uri: Uri?, values: Array<out ContentValues>?): Int {
         val db = dbHelper.writableDatabase
 
         when (uriMatcher.match(uri)) {
@@ -38,11 +38,13 @@ class WeatherContentProvider : ContentProvider() {
                 db.beginTransaction()
                 var rowsInserted = 0
                 try {
-                    for (value in values) {
-                        val id = db.insert(WeatherContract.WeatherEntry.TABLE_NAME,
-                                null, value)
-                        if (id != -1L) {
-                            rowsInserted++
+                    if (values != null) {
+                        for (value in values) {
+                            val id = db.insert(WeatherContract.WeatherEntry.TABLE_NAME,
+                                    null, value)
+                            if (id != -1L) {
+                                rowsInserted++
+                            }
                         }
                     }
                     db.setTransactionSuccessful()
@@ -71,7 +73,7 @@ class WeatherContentProvider : ContentProvider() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>): Int {
+    override fun delete(uri: Uri?, selection: String?, selectionArgs: Array<out String>?): Int {
         val numRowsDeleted: Int
 
         // if selection == null we delete all rows, but
