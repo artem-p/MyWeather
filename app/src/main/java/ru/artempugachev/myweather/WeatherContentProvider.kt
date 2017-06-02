@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 
 val CODE_WEATHER = 100
-val CODE_WEATHER_WITH_TIME = 101
+val CODE_WEATHER_WITH_DATE = 101
 
 class WeatherContentProvider : ContentProvider() {
     lateinit var dbHelper: WeatherDbHelper
@@ -18,7 +18,7 @@ class WeatherContentProvider : ContentProvider() {
         val matcher = UriMatcher(UriMatcher.NO_MATCH)
         val authority = AUTHORITY
         matcher.addURI(authority, PATH_WEATHER, CODE_WEATHER)
-        matcher.addURI(authority, "$PATH_WEATHER/#", CODE_WEATHER_WITH_TIME)
+        matcher.addURI(authority, "$PATH_WEATHER/#", CODE_WEATHER_WITH_DATE)
         return matcher
     }
 
@@ -75,6 +75,18 @@ class WeatherContentProvider : ContentProvider() {
                         null,
                         selection, selectionArgs,
                         null, null, sortOrder)
+            }
+
+            CODE_WEATHER_WITH_DATE -> {
+                val date: String? = uri?.pathSegments?.get(1)
+                if (date != null) {
+                    val where: String = "${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP}=?"
+                    val whereArgs: Array<String> = arrayOf(date)
+                    cursor = db.query(WeatherContract.WeatherEntry.TABLE_NAME,
+                            projection, where, whereArgs, null, null, sortOrder)
+                } else {
+                    throw UnsupportedOperationException("Date is null: $uri")
+                }
             }
 
             else -> {
