@@ -1,6 +1,7 @@
 package ru.artempugachev.myweather
 
 import android.databinding.DataBindingUtil
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
@@ -18,3 +19,12 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+
+/**
+ * We need some data to test loader
+ * */
+class LoadInitDataTask : AsyncTask<Void, Void, Void>() {
+    override fun doInBackground(vararg params: Void?): Void {
+        // todo
+    }
+}

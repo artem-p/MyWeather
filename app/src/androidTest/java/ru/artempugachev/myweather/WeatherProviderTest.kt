@@ -28,7 +28,7 @@ class WeatherProviderTest : ProviderTestCase2<WeatherContentProvider>(
      * */
     @Test
     fun testReadRows() {
-        testAddRows()
+        addRows()
         val cursor: Cursor = context.contentResolver.query(WEATHER_URI,
                 null, null, null, null)
 
