@@ -1,6 +1,5 @@
 package ru.artempugachev.myweather
 
-import android.content.ContentValues
 import android.database.Cursor
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -44,7 +43,7 @@ class WeatherProviderTest : ProviderTestCase2<WeatherContentProvider>(
     }
 
     fun addRows(): Int {
-        val valArray = getTestContentValues()
+        val valArray = getTestWeatherContentValues()
         return context.contentResolver.bulkInsert(WEATHER_URI, valArray)
     }
 

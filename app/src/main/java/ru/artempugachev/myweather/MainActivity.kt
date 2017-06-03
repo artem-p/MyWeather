@@ -16,15 +16,24 @@ class MainActivity : AppCompatActivity() {
         val weatherData: WeatherData = weather.toWeatherData()
 
         binding.weatherData = weatherData
+
+        loadTestData()
+    }
+
+    private fun loadTestData() {
+        LoadInitDataTask().execute()
+    }
+
+    /**
+     * We need some data to test loader
+     * */
+    inner class LoadInitDataTask : AsyncTask<Unit, Unit, Unit>() {
+        override fun doInBackground(vararg params: Unit?) {
+            contentResolver.delete(WEATHER_URI, null, null)
+            val weatherDataStub = getTestWeatherContentValues()
+            contentResolver.bulkInsert(WEATHER_URI, weatherDataStub)
+        }
     }
 }
 
 
-/**
- * We need some data to test loader
- * */
-class LoadInitDataTask : AsyncTask<Unit, Unit, Unit>() {
-    override fun doInBackground(vararg params: Unit?) {
-
-    }
-}

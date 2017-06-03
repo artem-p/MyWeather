@@ -142,7 +142,7 @@ class WeatherContentProvider : ContentProvider() {
 /**
  * Some data for test purposes
  * */
-fun getTestContentValues(): Array<ContentValues> {
+fun getTestWeatherContentValues(): Array<ContentValues> {
     val cv1: ContentValues = ContentValues()
     cv1.put(WeatherContract.WeatherEntry._ID, 1)
     cv1.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 111)
