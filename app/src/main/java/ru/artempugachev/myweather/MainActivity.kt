@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 /**
  * We need some data to test loader
  * */
-class LoadInitDataTask : AsyncTask<Void, Void, Void>() {
-    override fun doInBackground(vararg params: Void?): Void {
-        // todo
+class LoadInitDataTask : AsyncTask<Unit, Unit, Unit>() {
+    override fun doInBackground(vararg params: Unit?) {
+
     }
 }
