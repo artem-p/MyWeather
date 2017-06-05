@@ -65,15 +65,20 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     }
 
     override fun onLoadFinished(loader: Loader<WeatherData>?, weatherData: WeatherData?) {
-        if (weatherData != null) binding.weatherData = weatherData
-
+        bindCurWeatherData(weatherData)
     }
 
     override fun onLoaderReset(loader: Loader<WeatherData>?) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        bindCurWeatherData(null)
     }
 
-
+    fun bindCurWeatherData(weatherData: WeatherData?) {
+        if (weatherData != null) {
+            binding.weatherData = weatherData
+        } else {
+            // todo implement output with no data
+        }
+    }
 }
 
 class WeatherLoader(context: Context?) : AsyncTaskLoader<WeatherData>(context) {
