@@ -7,11 +7,11 @@ import android.database.Cursor
  * Wrapper on WeatherProvider with helper methods
  */
 
-class DataProvider {
+class DataProvider(val context: Context) {
     /**
      * Query data with provider and prepare WeatherData data class
      * */
-    fun getCurrentData(context: Context): WeatherData? {
+    fun getCurrentData(): WeatherData? {
         val sortOrder = "${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP} DESC"
 
         val cursor: Cursor = context.contentResolver.query(WEATHER_URI,

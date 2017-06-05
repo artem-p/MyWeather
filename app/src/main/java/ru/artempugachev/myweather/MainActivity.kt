@@ -14,13 +14,13 @@ import ru.artempugachev.myweather.databinding.ActivityMainBinding
 val WEATHER_LOADER_ID = 42
 
 class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
-
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val weather: Weather = Weather(1, 14.4, 5, Wind(0.0, 0))
         val weatherData: WeatherData = weather.toWeatherData()
 
@@ -68,8 +68,10 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
 
     inner class WeatherLoader : AsyncTaskLoader<WeatherData>(this) {
-        override fun loadInBackground(): WeatherData {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun loadInBackground(): WeatherData? {
+            // query current data from database
+            val dataProvider = DataProvider(context)
+            return dataProvider.getCurrentData()
         }
 
         override fun deliverResult(data: WeatherData?) {
