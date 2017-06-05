@@ -8,7 +8,6 @@ import android.database.Cursor
  */
 
 class DataProvider {
-
     /**
      * Query data with provider and prepare WeatherData data class
      * */
@@ -20,13 +19,21 @@ class DataProvider {
 
         val weatherData: WeatherData?
 
-        if (cursor.moveToFirst()) {
-//            val temperature
+        weatherData = if (cursor.moveToFirst()) {
+            val timestamp = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP))
+            val temperature = cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TEMPERATURE))
+            val weatherCode = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_CODE))
+            val windSpeed = cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED))
+            val windDir = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION))
+
+            val weather: Weather = Weather(timestamp, temperature, weatherCode, Wind(windSpeed, windDir))
+            weather.toWeatherData()
         } else {
-            weatherData = null
+            null
         }
+
         cursor.close()
+
+        return weatherData
     }
-
-
 }
