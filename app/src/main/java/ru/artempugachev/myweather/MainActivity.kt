@@ -1,11 +1,13 @@
 package ru.artempugachev.myweather
 
+import android.database.Cursor
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.LoaderManager
 import android.support.v4.app.LoaderManager.LoaderCallbacks
+import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
 
@@ -45,17 +47,34 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     /**
      * Loader methods
      * */
-    override fun onLoadFinished(loader: Loader<WeatherData>?, data: WeatherData?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onCreateLoader(loaderId: Int, args: Bundle?): Loader<WeatherData> {
+        when (loaderId) {
+            WEATHER_LOADER_ID -> {
+            }
+
+            else -> {
+                throw RuntimeException("Loader not implemented")
+            }
+        }
     }
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<WeatherData> {
+    override fun onLoadFinished(loader: Loader<WeatherData>?, data: WeatherData?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onLoaderReset(loader: Loader<WeatherData>?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-}
 
+
+    inner class WeatherLoader : AsyncTaskLoader<WeatherData>(this) {
+        override fun loadInBackground(): WeatherData {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun deliverResult(data: WeatherData?) {
+            super.deliverResult(data)
+        }
+    }
+}
 
