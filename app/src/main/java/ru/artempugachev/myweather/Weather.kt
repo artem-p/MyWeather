@@ -10,8 +10,8 @@ class Weather(val timestamp: Int, val temperature: Double, val weatherCode: Int,
      * Transform to data class for binding
      */
     fun toWeatherData(): WeatherData {
-        // stub
-        return WeatherData(14.4, R.drawable.cloudy, "Cloudy", Wind(0.0, 270))
+        // todo stub
+        return WeatherData(temperature, R.drawable.cloudy, "Cloudy", wind)
     }
 }
 

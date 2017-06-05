@@ -1,5 +1,6 @@
 package ru.artempugachev.myweather
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
@@ -25,7 +26,12 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
         binding.weatherData = curWeatherData
 
+        // todo this is for debug, delete later
         loadTestData()
+        Thread.sleep(100)
+        /////////////////////////////////////////
+
+        supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
     }
 
     private fun loadTestData() {
@@ -49,6 +55,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     override fun onCreateLoader(loaderId: Int, args: Bundle?): Loader<WeatherData> {
         when (loaderId) {
             WEATHER_LOADER_ID -> {
+                return WeatherLoader(this)
             }
 
             else -> {
@@ -57,26 +64,31 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         }
     }
 
-    override fun onLoadFinished(loader: Loader<WeatherData>?, data: WeatherData?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onLoadFinished(loader: Loader<WeatherData>?, weatherData: WeatherData?) {
+        if (weatherData != null) binding.weatherData = weatherData
+
     }
 
     override fun onLoaderReset(loader: Loader<WeatherData>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
-    inner class WeatherLoader : AsyncTaskLoader<WeatherData>(this) {
-        override fun loadInBackground(): WeatherData? {
-            // query current data from database
-            val dataProvider = DataProvider(context)
-            return dataProvider.getCurrentData()
-        }
+}
 
-        override fun deliverResult(weatherData: WeatherData?) {
-            if (weatherData != null) curWeatherData = weatherData
-            super.deliverResult(weatherData)
-        }
+class WeatherLoader(context: Context?) : AsyncTaskLoader<WeatherData>(context) {
+    override fun onStartLoading() {
+        forceLoad()
+    }
+
+    override fun loadInBackground(): WeatherData? {
+        // query current data from database
+        val dataProvider = DataProvider(context)
+        return dataProvider.getCurrentData()
+    }
+
+    override fun deliverResult(weatherData: WeatherData?) {
+        super.deliverResult(weatherData)
     }
 }
 
