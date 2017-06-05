@@ -4,9 +4,16 @@ import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.LoaderManager
+import android.support.v4.app.LoaderManager.LoaderCallbacks
+import android.support.v4.content.Loader
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+val WEATHER_LOADER_ID = 42
+
+class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +40,21 @@ class MainActivity : AppCompatActivity() {
             val weatherDataStub = getTestWeatherContentValues()
             contentResolver.bulkInsert(WEATHER_URI, weatherDataStub)
         }
+    }
+
+    /**
+     * Loader methods
+     * */
+    override fun onLoadFinished(loader: Loader<WeatherData>?, data: WeatherData?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<WeatherData> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onLoaderReset(loader: Loader<WeatherData>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 
