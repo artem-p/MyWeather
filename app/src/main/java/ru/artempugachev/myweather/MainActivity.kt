@@ -50,6 +50,18 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     }
 
     /**
+     * This async task is for test data fetching from darksky
+     * Later we'll transform it to job service
+     * */
+    inner class FetchCurrentDataTask : AsyncTask<Unit, Unit, Unit>() {
+        override fun doInBackground(vararg params: Unit?) {
+            val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
+            val curWeather = darkSkyProvider.fetchCurrent(Coordinate("59.93", "30.29"))
+        }
+
+    }
+
+    /**
      * Loader methods
      * */
     override fun onCreateLoader(loaderId: Int, args: Bundle?): Loader<WeatherData> {
