@@ -1,58 +1,45 @@
+
 package ru.artempugachev.myweather
 
-import android.database.Cursor
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.test.ProviderTestCase2
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.artempugachev.myweather.data.AUTHORITY
-import ru.artempugachev.myweather.data.WEATHER_URI
-import ru.artempugachev.myweather.data.WeatherContentProvider
-import ru.artempugachev.myweather.data.getTestWeatherContentValues
+import ru.artempugachev.myweather.data.*
 
 
 @RunWith(AndroidJUnit4::class)
-class DataProviderTest : ProviderTestCase2<WeatherContentProvider>(
-        WeatherContentProvider::class.java, AUTHORITY
-) {
-//    val context: Context = InstrumentationRegistry.getTargetContext()
+class DataProviderTest {
+    val context: Context = InstrumentationRegistry.getTargetContext()
+    lateinit var dataProvider: DataProvider
 
     @Before
-    override public fun setUp() {
-        context = InstrumentationRegistry.getTargetContext()
-        super.setUp()
-        deleteAllRows()
+    fun setUp() {
+        deleteDb()
+        dataProvider = DataProvider(context)
     }
 
-    /**
-     * Add test rows and then read
-     * */
+
     @Test
-    fun testReadRows() {
+    fun testGetCurData() {
         addRows()
-        val cursor: Cursor = context.contentResolver.query(WEATHER_URI,
-                null, null, null, null)
-
-        assertEquals(3, cursor.count)
-
-        cursor.close()
+        val curWeather = dataProvider.getCurrentData()
+        assertEquals(1496534400, curWeather.timestamp)
     }
 
-    @Test
-    fun testAddRows() {
-        val rowInserted = addRows()
-        assertEquals(3, rowInserted)
-    }
 
     fun addRows(): Int {
         val valArray = getTestWeatherContentValues()
         return context.contentResolver.bulkInsert(WEATHER_URI, valArray)
     }
 
-    fun deleteAllRows() {
-        context.contentResolver.delete(WEATHER_URI, null, null)
+    fun deleteDb() {
+        context.deleteDatabase(DATABASE_NAME)
     }
 
 }
