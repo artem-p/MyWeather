@@ -45,11 +45,9 @@ class DataProvider(val context: Context) {
      * */
     fun writeWeather(weatherArray: Array<Weather>) {
         if (weatherArray.isNotEmpty()) {
-            val weatherCv = weatherArray.map{weather -> weather.toWeatherData() }
-
-            for (weather in weatherArray) {
-
-            }
+            val weatherCv = weatherArray.map{weather -> weather.toContentValues() }
+            val weatherCvArray = weatherCv.toTypedArray()
+            context.contentResolver.bulkInsert(WEATHER_URI, weatherCvArray)
         }
     }
 }

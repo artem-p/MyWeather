@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         binding.weatherData = curWeatherData
 
         // todo this is for debug, delete later
-        loadTestData()
-        Thread.sleep(100)
+        loadCurWeatherData()
+        Thread.sleep(3000)
         /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     private fun loadTestData() {
         LoadInitDataTask().execute()
     }
+
+    private fun loadCurWeatherData() {
+        FetchCurrentDataTask().execute()
+    }
+
 
     /**
      * We need some data to test loader
@@ -61,7 +66,9 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         override fun doInBackground(vararg params: Unit?) {
             val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
             val curWeather = darkSkyProvider.fetchCurrent(Coordinate("59.93", "30.29"))
-            // todo write cur weather to db
+
+            val dataProvider = DataProvider(this@MainActivity)
+            dataProvider.writeWeather(arrayOf(curWeather))
         }
 
     }
