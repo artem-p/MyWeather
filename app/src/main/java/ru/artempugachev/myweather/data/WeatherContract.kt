@@ -1,10 +1,10 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.data
 
 import android.net.Uri
 import android.provider.BaseColumns
 
 val AUTHORITY = "ru.artempugachev.myweather"
-val BASE_CONTENT_URI = Uri.parse("content://$AUTHORITY")
+val BASE_CONTENT_URI = Uri.parse("content://${AUTHORITY}")
 val PATH_WEATHER = "weather"
 val WEATHER_URI = BASE_CONTENT_URI.buildUpon()
         .appendPath(PATH_WEATHER)

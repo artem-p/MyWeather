@@ -1,7 +1,10 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.data
 
 import android.content.Context
 import android.database.Cursor
+import ru.artempugachev.myweather.weather.Weather
+import ru.artempugachev.myweather.weather.WeatherData
+import ru.artempugachev.myweather.weather.Wind
 
 /**
  * Wrapper on WeatherProvider with helper methods

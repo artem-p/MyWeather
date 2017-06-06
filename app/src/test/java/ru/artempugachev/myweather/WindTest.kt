@@ -2,6 +2,7 @@ package ru.artempugachev.myweather
 
 import junit.framework.Assert.assertEquals
 import org.junit.Test
+import ru.artempugachev.myweather.weather.Wind
 
 class WindTest {
     @Test

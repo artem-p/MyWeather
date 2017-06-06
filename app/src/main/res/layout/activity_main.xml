@@ -6,7 +6,7 @@
     xmlns:my_weather="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="weatherData" type="ru.artempugachev.myweather.WeatherData"/>
+        <variable name="weatherData" type="ru.artempugachev.myweather.weather.WeatherData"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -49,7 +49,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             />
 
-        <ru.artempugachev.myweather.WindArrow
+        <ru.artempugachev.myweather.weather.WindArrow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"

@@ -7,6 +7,10 @@ import android.test.ProviderTestCase2
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.artempugachev.myweather.data.AUTHORITY
+import ru.artempugachev.myweather.data.WEATHER_URI
+import ru.artempugachev.myweather.data.WeatherContentProvider
+import ru.artempugachev.myweather.data.getTestWeatherContentValues
 
 
 @RunWith(AndroidJUnit4::class)

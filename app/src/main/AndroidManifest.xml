@@ -19,7 +19,7 @@
 
         <provider
             android:authorities="ru.artempugachev.myweather"
-            android:name="ru.artempugachev.myweather.WeatherContentProvider"
+            android:name="ru.artempugachev.myweather.data.WeatherContentProvider"
             android:exported="false">
         </provider>
     </application>

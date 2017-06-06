@@ -1,4 +1,4 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.data
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

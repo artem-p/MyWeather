@@ -8,7 +8,11 @@ import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
+import ru.artempugachev.myweather.data.DataProvider
+import ru.artempugachev.myweather.data.WEATHER_URI
+import ru.artempugachev.myweather.data.getTestWeatherContentValues
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
+import ru.artempugachev.myweather.weather.*
 
 val WEATHER_LOADER_ID = 42
 

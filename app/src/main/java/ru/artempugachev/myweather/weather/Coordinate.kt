@@ -1,4 +1,4 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.weather
 
 /**
  * Coordinate with String parameters

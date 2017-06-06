@@ -3,13 +3,15 @@ package ru.artempugachev.myweather
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.artempugachev.myweather.data.DATABASE_NAME
+import ru.artempugachev.myweather.data.WeatherContract
+import ru.artempugachev.myweather.data.WeatherDbHelper
 
 
 @RunWith(AndroidJUnit4::class)

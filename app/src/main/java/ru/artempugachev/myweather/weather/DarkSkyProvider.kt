@@ -1,4 +1,4 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.weather
 
 import android.net.Uri
 import org.json.JSONException
@@ -10,7 +10,6 @@ import java.net.URL
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 
 /**
  * Class for weather provider. Weather provider responds for

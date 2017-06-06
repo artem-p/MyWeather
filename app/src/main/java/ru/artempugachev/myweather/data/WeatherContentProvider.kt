@@ -1,4 +1,4 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.data
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -18,7 +18,7 @@ class WeatherContentProvider : ContentProvider() {
         val matcher = UriMatcher(UriMatcher.NO_MATCH)
         val authority = AUTHORITY
         matcher.addURI(authority, PATH_WEATHER, CODE_WEATHER)
-        matcher.addURI(authority, "$PATH_WEATHER/#", CODE_WEATHER_WITH_DATE)
+        matcher.addURI(authority, "${PATH_WEATHER}/#", CODE_WEATHER_WITH_DATE)
         return matcher
     }
 

@@ -1,12 +1,13 @@
-package ru.artempugachev.myweather
+package ru.artempugachev.myweather.weather
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.databinding.BindingAdapter
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
+import ru.artempugachev.myweather.R
+import ru.artempugachev.myweather.weather.Wind
 
 /**
  * Component for wind arrow
