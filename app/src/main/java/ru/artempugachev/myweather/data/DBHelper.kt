@@ -13,7 +13,7 @@ val SQL_CREATE_WEATHER_TABLE = """CREATE TABLE ${WeatherContract.WeatherEntry.TA
                 ${WeatherContract.WeatherEntry.COLUMN_FEELS_LIKE_TEMPERATURE} REAL NOT NULL,
                 ${WeatherContract.WeatherEntry.COLUMN_HUMIDITY} INTEGER NOT NULL,
                 ${WeatherContract.WeatherEntry.COLUMN_PRESSURE} REAL NOT NULL,
-                ${WeatherContract.WeatherEntry.COLUMN_WEATHER_CODE} INTEGER NOT NULL,
+                ${WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON} STRING NOT NULL,
                 ${WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION} INTEGER NOT NULL,
                 ${WeatherContract.WeatherEntry.COLUMN_WIND_SPEED} REAL NOT NULL,
                  UNIQUE (${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP}) ON CONFLICT REPLACE

@@ -25,11 +25,11 @@ class DataProvider(val context: Context) {
         weatherData = if (cursor.moveToFirst()) {
             val timestamp = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP))
             val temperature = cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TEMPERATURE))
-            val weatherCode = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_CODE))
+            val weatherIcon = cursor.getString(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON))
             val windSpeed = cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED))
             val windDir = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION))
 
-            val weather: Weather = Weather(timestamp, temperature, weatherCode, Wind(windSpeed, windDir))
+            val weather: Weather = Weather(timestamp, temperature, weatherIcon, Wind(windSpeed, windDir))
             weather.toWeatherData()
         } else {
             null
