@@ -17,7 +17,7 @@ import okhttp3.Response
  * fetching weather data
  */
 
-class WeatherProvider(private val mApiKey: String) {
+class DarkSkyProvider(private val mApiKey: String) {
     private val BASE_URL = "https://api.darksky.net/forecast"
     // parameters here https://darksky.net/dev/docs/forecast
     private val LANG_PARAM_KEY = "lang"
@@ -67,9 +67,8 @@ class WeatherProvider(private val mApiKey: String) {
         val windSpeedStr = jsonCurrent.getString(WIND_SPEED_JSON_PARAM)
         val windDirStr = jsonCurrent.getString(WIND_DIR_JSON_PARAM)
         val forecastSummary = jsonForecast.getString(SUMMARY_JSON_PARAM)
-        return Weather(java.lang.Long.parseLong(timestampStr), summary, forecastSummary, icon,
-                java.lang.Float.parseFloat(temperatureStr), java.lang.Float.parseFloat(apparentTemperatureStr),
-                java.lang.Float.parseFloat(humidityStr), java.lang.Float.parseFloat(windSpeedStr), java.lang.Float.parseFloat(windDirStr))
+        return Weather(timestampStr.toInt(), temperatureStr.toDouble(),
+                icon, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))
     }
 
 

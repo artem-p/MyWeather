@@ -3,7 +3,7 @@ package ru.artempugachev.myweather
 /**
  * Representation of weather
  * */
-class Weather(val timestamp: Int, val temperature: Double, val weatherCode: Int,
+class Weather(val timestamp: Int, val temperature: Double, val icon: String,
               val wind: Wind) {
 
     /**
