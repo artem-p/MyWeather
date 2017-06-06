@@ -29,6 +29,8 @@ class DataProviderTest {
     fun testGetCurData() {
         addRows()
         val curWeather = dataProvider.getCurrentData()
+
+        // todo add timestamp to weather data class
         assertEquals(1496534400, curWeather.timestamp)
     }
 
