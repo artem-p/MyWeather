@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val weather: Weather = Weather(1, 14.4, 5, Wind(0.0, 0))
+        val weather: Weather = Weather(1, 14.4, "cloud", Wind(0.0, 0))
         curWeatherData = weather.toWeatherData()
 
         binding.weatherData = curWeatherData
