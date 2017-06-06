@@ -39,4 +39,15 @@ class DataProvider(val context: Context) {
 
         return weatherData
     }
+
+    /**
+     * Write array of weatherArray data to db
+     * */
+    fun writeWeather(weatherArray: Array<Weather>) {
+        if (weatherArray.isNotEmpty()) {
+            for (weather in weatherArray) {
+
+            }
+        }
+    }
 }

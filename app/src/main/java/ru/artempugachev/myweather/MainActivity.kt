@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         override fun doInBackground(vararg params: Unit?) {
             val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
             val curWeather = darkSkyProvider.fetchCurrent(Coordinate("59.93", "30.29"))
+            // todo write cur weather to db
         }
 
     }
