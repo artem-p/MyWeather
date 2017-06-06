@@ -45,6 +45,8 @@ class DataProvider(val context: Context) {
      * */
     fun writeWeather(weatherArray: Array<Weather>) {
         if (weatherArray.isNotEmpty()) {
+            val weatherCv = weatherArray.map{weather -> weather.toWeatherData() }
+
             for (weather in weatherArray) {
 
             }
