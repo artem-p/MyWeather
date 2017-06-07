@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
         binding.weatherData = curWeatherData
 
-        // todo this is for debug, delete later
         loadCurWeatherData()
-        Thread.sleep(3000)
+
+        // todo this is for debug, delete later
+        Thread.sleep(1000)
         /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)

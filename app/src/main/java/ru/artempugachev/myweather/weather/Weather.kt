@@ -28,6 +28,13 @@ class Weather(val timestamp: Int, val temperature: Double, val icon: String,
         cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON, icon)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION, wind.direction)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, wind.speed)
+
+        // todo not implemented vals yet
+        cv.put(WeatherContract.WeatherEntry.COLUMN_FEELS_LIKE_TEMPERATURE, 0.0)
+        cv.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 0)
+        cv.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 0)
+
+
         return cv
     }
 }
