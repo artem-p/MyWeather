@@ -156,8 +156,8 @@ fun getTestWeatherContentValues(): Array<ContentValues> {
 
     val cv2: ContentValues = ContentValues()
     cv2.put(WeatherContract.WeatherEntry._ID, 2)
-    cv2.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496530800)
-    cv2.put(WeatherContract.WeatherEntry.COLUMN_TEMPERATURE, -11.2)
+    cv2.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496534400)
+    cv2.put(WeatherContract.WeatherEntry.COLUMN_TEMPERATURE, 12.2)
     cv2.put(WeatherContract.WeatherEntry.COLUMN_FEELS_LIKE_TEMPERATURE, 14.3)
     cv2.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 75)
     cv2.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1015.5)
@@ -166,7 +166,7 @@ fun getTestWeatherContentValues(): Array<ContentValues> {
     cv2.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5)
 
     val cv3: ContentValues = ContentValues()
-    cv3.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496534400)
+    cv3.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496530800)
     cv3.put(WeatherContract.WeatherEntry.COLUMN_TEMPERATURE, 11.3)
     cv3.put(WeatherContract.WeatherEntry.COLUMN_FEELS_LIKE_TEMPERATURE, 14.3)
     cv3.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 75)
