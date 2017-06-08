@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
+import android.support.v4.widget.DrawerLayout
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     lateinit var curWeatherData: WeatherData
     lateinit var drawerList: ListView
     lateinit var drawerAdapter: ArrayAdapter<String>
+    lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
     private fun createDrawer() {
         drawerList = findViewById(R.id.drawer_list) as ListView
+        drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
         val drawerArray = arrayOf(getString(R.string.now_label), getString(R.string.forecast_label))
         drawerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerArray)
         drawerList.adapter = drawerAdapter
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
                 else -> intent = null
             }
             if (intent != null) startActivity(intent)
+            drawerLayout.closeDrawers()
         }
     }
 
