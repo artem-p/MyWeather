@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import ru.artempugachev.myweather.data.DataProvider
 import ru.artempugachev.myweather.data.WEATHER_URI
 import ru.artempugachev.myweather.data.getTestWeatherContentValues
@@ -51,6 +54,19 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         val drawerArray = arrayOf(getString(R.string.now_label), getString(R.string.forecast_label))
         drawerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerArray)
         drawerList.adapter = drawerAdapter
+
+        drawerList.setOnItemClickListener(DrawerListener())
+
+//        drawerList.setOnItemClickListener { adapterView: AdapterView<*>, view: View, position: Int, id: Long ->
+//            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
+//        }
+    }
+
+    class DrawerListener : AdapterView.OnItemClickListener {
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(parent?.context, "Time for an upgrade!", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun loadTestData() {
