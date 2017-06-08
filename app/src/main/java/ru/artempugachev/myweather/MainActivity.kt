@@ -1,6 +1,7 @@
 package ru.artempugachev.myweather
 
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
@@ -56,7 +57,13 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         drawerList.adapter = drawerAdapter
 
         drawerList.setOnItemClickListener { adapterView: AdapterView<*>, view: View, position: Int, id: Long ->
-            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
+            val intent: Intent?
+            when (position) {
+                0 -> intent = Intent(this@MainActivity, MainActivity::class.java)
+                1 -> intent = Intent(this@MainActivity, ForecastActivity::class.java)
+                else -> intent = null
+            }
+            if (intent != null) startActivity(intent)
         }
     }
 
