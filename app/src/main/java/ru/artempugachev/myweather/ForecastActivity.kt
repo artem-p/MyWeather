@@ -3,9 +3,11 @@ package ru.artempugachev.myweather
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
-class ForecastActivity : AppCompatActivity() {
+class ForecastActivity : DrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forecast)
+
+        createDrawer()
     }
 }

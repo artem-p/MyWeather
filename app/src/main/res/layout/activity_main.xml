@@ -68,12 +68,6 @@
                 />
         </android.support.constraint.ConstraintLayout>
 
-        <ListView
-            android:id="@+id/drawer_list"
-            android:layout_width="@dimen/drawer_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/drawer"
-            />
+        <include layout="@layout/drawer_list" />
     </android.support.v4.widget.DrawerLayout>
 </layout>

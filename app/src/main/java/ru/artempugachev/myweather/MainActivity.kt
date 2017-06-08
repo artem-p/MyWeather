@@ -23,12 +23,9 @@ import ru.artempugachev.myweather.weather.*
 
 val WEATHER_LOADER_ID = 42
 
-class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
+class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
     lateinit var binding: ActivityMainBinding
     lateinit var curWeatherData: WeatherData
-    lateinit var drawerList: ListView
-    lateinit var drawerAdapter: ArrayAdapter<String>
-    lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,26 +46,6 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
-    }
-
-
-    private fun createDrawer() {
-        drawerList = findViewById(R.id.drawer_list) as ListView
-        drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
-        val drawerArray = arrayOf(getString(R.string.now_label), getString(R.string.forecast_label))
-        drawerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerArray)
-        drawerList.adapter = drawerAdapter
-
-        drawerList.setOnItemClickListener { adapterView: AdapterView<*>, view: View, position: Int, id: Long ->
-            val intent: Intent?
-            when (position) {
-                0 -> intent = Intent(this@MainActivity, MainActivity::class.java)
-                1 -> intent = Intent(this@MainActivity, ForecastActivity::class.java)
-                else -> intent = null
-            }
-            if (intent != null) startActivity(intent)
-            drawerLayout.closeDrawers()
-        }
     }
 
 
