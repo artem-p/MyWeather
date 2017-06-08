@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import ru.artempugachev.myweather.data.DataProvider
 import ru.artempugachev.myweather.data.WEATHER_URI
 import ru.artempugachev.myweather.data.getTestWeatherContentValues
@@ -19,10 +21,14 @@ val WEATHER_LOADER_ID = 42
 class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
     lateinit var binding: ActivityMainBinding
     lateinit var curWeatherData: WeatherData
+    lateinit var drawerList: ListView
+    lateinit var drawerAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        createDrawer()
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val weather: Weather = Weather(1, 14.4, "cloud", Wind(0.0, 0))
@@ -37,6 +43,13 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
+    }
+
+    private fun createDrawer() {
+        drawerList = findViewById(R.id.drawer_list) as ListView
+        val drawerArray = arrayOf(getString(R.string.now_label), getString(R.string.forecast_label))
+        drawerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerArray)
+        drawerList.adapter = drawerAdapter
     }
 
     private fun loadTestData() {

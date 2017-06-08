@@ -16,7 +16,7 @@
         >
 
         <ListView
-            android:id="@+id/navList"
+            android:id="@+id/drawer_list"
             android:layout_width="@dimen/drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"
