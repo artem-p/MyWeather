@@ -55,19 +55,11 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         drawerAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerArray)
         drawerList.adapter = drawerAdapter
 
-        drawerList.setOnItemClickListener(DrawerListener())
-
-//        drawerList.setOnItemClickListener { adapterView: AdapterView<*>, view: View, position: Int, id: Long ->
-//            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
-//        }
-    }
-
-    class DrawerListener : AdapterView.OnItemClickListener {
-        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Toast.makeText(parent?.context, "Time for an upgrade!", Toast.LENGTH_SHORT).show()
+        drawerList.setOnItemClickListener { adapterView: AdapterView<*>, view: View, position: Int, id: Long ->
+            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
         }
-
     }
+
 
     private fun loadTestData() {
         LoadInitDataTask().execute()
