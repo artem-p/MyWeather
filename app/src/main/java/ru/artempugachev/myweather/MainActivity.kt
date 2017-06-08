@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        createDrawer()
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val weather: Weather = Weather(1, 14.4, "cloud", Wind(0.0, 0))
@@ -36,6 +35,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
         binding.weatherData = curWeatherData
 
+        createDrawer()
         loadCurWeatherData()
 
         // todo this is for debug, delete later
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity(), LoaderCallbacks<WeatherData> {
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
     }
+
 
     private fun createDrawer() {
         drawerList = findViewById(R.id.drawer_list) as ListView
