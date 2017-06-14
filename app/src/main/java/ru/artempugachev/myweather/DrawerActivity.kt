@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import ru.artempugachev.myweather.ui.ForecastActivity
 
 /**
  * We need drawer_list on all activities so move it to base class
