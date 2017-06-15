@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ru.artempugachev.myweather.R
+import ru.artempugachev.myweather.weather.WeatherData
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
-    lateinit var forecastData: Array<String>
+    lateinit var forecastData: Array<WeatherData>
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ForecastViewHolder {
         val context = parent?.context
         val inflater = LayoutInflater.from(context)
-        val shouldAttachToParentImmideately = false
+        val shouldAttachToParentImmediately = false
 
-        val view = inflater.inflate(R.layout.forecast_list_item, parent, shouldAttachToParentImmideately)
+        val view = inflater.inflate(R.layout.forecast_list_item, parent, shouldAttachToParentImmediately)
         return ForecastViewHolder(view)
     }
 
@@ -29,16 +30,16 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         return forecastData.size
     }
 
-    fun setData(data: Array<String>) {
-        forecastData = data
+    fun setData(forecasts: Array<WeatherData>) {
+        forecastData = forecasts
         notifyDataSetChanged()
     }
 
     class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val forecastTextView: TextView = view.findViewById(R.id.forecastText) as TextView
 
-        fun bindForecast(forecast: String) {
-            forecastTextView.setText(forecast)
+        fun bindForecast(forecast: WeatherData) {
+            forecastTextView.text = forecast.weatherDescription
         }
     }
 }
