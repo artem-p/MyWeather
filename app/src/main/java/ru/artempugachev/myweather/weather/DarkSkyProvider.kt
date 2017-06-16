@@ -66,7 +66,12 @@ class DarkSkyProvider(private val mApiKey: String) {
         val windSpeedStr = jsonCurrent.getString(WIND_SPEED_JSON_PARAM)
         val windDirStr = jsonCurrent.getString(WIND_DIR_JSON_PARAM)
         val forecastSummary = jsonForecast.getString(SUMMARY_JSON_PARAM)
-        return Weather(timestampStr.toInt(), temperatureStr.toDouble(),
+
+        /*
+        * We use the same class for current weather and forecast, as it differs only in temps
+        * So here put current temperature to min and to max as well
+        * */
+        return Weather(timestampStr.toInt(), temperatureStr.toDouble(), temperatureStr.toDouble(),
                 icon, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))
     }
 

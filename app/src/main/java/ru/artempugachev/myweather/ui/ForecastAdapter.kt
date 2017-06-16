@@ -43,8 +43,8 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         val descriptionTextView: TextView = view.findViewById(R.id.description) as TextView
 
         fun bindForecast(forecast: WeatherData, context: Context) {
-            minTempTextView.text = context.getString(R.string.format_temp, forecast.temperature)
-            maxTempTextView.text = context.getString(R.string.format_temp, forecast.temperature)
+            minTempTextView.text = context.getString(R.string.format_temp, forecast.minTemp)
+            maxTempTextView.text = context.getString(R.string.format_temp, forecast.maxTemp)
             descriptionTextView.text = forecast.weatherDescription
         }
     }

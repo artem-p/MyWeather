@@ -33,7 +33,7 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val weather: Weather = Weather(1, 14.4, "cloud", Wind(0.0, 0))
+        val weather: Weather = Weather(1, 14.4, 7.5, "cloud", Wind(0.0, 0))
         curWeatherData = weather.toWeatherData()
 
         binding.weatherData = curWeatherData

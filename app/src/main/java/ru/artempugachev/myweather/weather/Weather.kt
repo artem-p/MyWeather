@@ -7,7 +7,7 @@ import ru.artempugachev.myweather.data.WeatherContract
 /**
  * Representation of weather
  * */
-class Weather(val timestamp: Int, val temperature: Double, val icon: String,
+class Weather(val timestamp: Int, val minTemp: Double, val maxTemp: Double, val icon: String,
               val wind: Wind) {
 
     /**
@@ -15,7 +15,7 @@ class Weather(val timestamp: Int, val temperature: Double, val icon: String,
      */
     fun toWeatherData(): WeatherData {
         // todo stub
-        return WeatherData(timestamp, temperature, R.drawable.cloudy, "Cloudy", wind)
+        return WeatherData(timestamp, minTemp, maxTemp, R.drawable.cloudy, "Cloudy", wind)
     }
 
     /**
@@ -24,13 +24,13 @@ class Weather(val timestamp: Int, val temperature: Double, val icon: String,
     fun toContentValues(): ContentValues {
         val cv: ContentValues = ContentValues()
         cv.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, timestamp)
-        cv.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE, temperature)
+        cv.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE, minTemp)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON, icon)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION, wind.direction)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, wind.speed)
 
+        cv.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMPERATURE, maxTemp)
         // todo not implemented vals yet
-        cv.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMPERATURE, 0.0)
         cv.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 0)
         cv.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 0)
 
@@ -43,7 +43,7 @@ class Weather(val timestamp: Int, val temperature: Double, val icon: String,
 /**
  * Data class only for databinding
  * */
-data class WeatherData(val timestamp: Int, val temperature: Double, val weatherIcon: Int,
+data class WeatherData(val timestamp: Int, val minTemp: Double, val maxTemp: Double, val weatherIcon: Int,
                               val weatherDescription: String, val wind: Wind) {
 
 }
