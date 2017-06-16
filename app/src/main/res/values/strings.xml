@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Weather</string>
-    <string name="format_temp_celsius" translatable="false"> %1.0f °C</string>
-    <string name="temp_default">15 °C</string>
+    <string name="format_temp" translatable="false"> %1.0f °</string>
+    <string name="temp_default">15 °</string>
     <string name="weather_default">Cloudy</string>
     <string name="now_label">Now</string>
     <string name="forecast_label">Forecast</string>

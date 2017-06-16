@@ -1,5 +1,6 @@
 package ru.artempugachev.myweather.ui
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,10 @@ import ru.artempugachev.myweather.weather.WeatherData
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
     lateinit var forecastData: Array<WeatherData>
+    lateinit var context: Context
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ForecastViewHolder {
-        val context = parent?.context
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
+        context = parent.context
         val inflater = LayoutInflater.from(context)
         val shouldAttachToParentImmediately = false
 
@@ -22,7 +24,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
 
     override fun onBindViewHolder(holder: ForecastViewHolder?, position: Int) {
-        holder?.bindForecast(forecastData[position])
+        holder?.bindForecast(forecastData[position], context)
     }
 
 
@@ -40,10 +42,9 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         val maxTempTextView: TextView = view.findViewById(R.id.max_temperature) as TextView
         val descriptionTextView: TextView = view.findViewById(R.id.description) as TextView
 
-        fun bindForecast(forecast: WeatherData) {
-            // todo min max temperature
-            minTempTextView.text = forecast.temperature.toString()
-            maxTempTextView.text = forecast.temperature.toString()
+        fun bindForecast(forecast: WeatherData, context: Context) {
+            minTempTextView.text = context.getString(R.string.format_temp, forecast.temperature)
+            maxTempTextView.text = context.getString(R.string.format_temp, forecast.temperature)
             descriptionTextView.text = forecast.weatherDescription
         }
     }
