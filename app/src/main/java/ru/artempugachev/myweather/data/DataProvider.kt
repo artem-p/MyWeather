@@ -15,10 +15,9 @@ class DataProvider(val context: Context) {
      * Query data with provider and prepare WeatherData data class
      * */
     fun getCurrentData(): WeatherData? {
-        val sortOrder = "${WeatherContract.WeatherEntry.COLUMN_TIMESTAMP} DESC"
 
         val cursor: Cursor = context.contentResolver.query(WEATHER_URI,
-                null, null, null, sortOrder)
+                null, null, null, null)
 
         val weatherData: WeatherData?
 
