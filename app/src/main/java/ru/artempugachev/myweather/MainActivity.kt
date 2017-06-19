@@ -51,12 +51,11 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
     inner class FetchWeatherDataTask : AsyncTask<Unit, Unit, Unit>() {
         override fun doInBackground(vararg params: Unit?) {
             val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
-            val curWeather = darkSkyProvider.fetchWeatherData(Coordinate("59.93", "30.29"))
+            val weatherData = darkSkyProvider.fetchWeatherData(Coordinate("59.93", "30.29"))
 
             val dataProvider = DataProvider(this@MainActivity)
-            dataProvider.writeWeather(arrayOf(curWeather))
+            dataProvider.writeWeather(weatherData)
         }
-
     }
 
     /**
