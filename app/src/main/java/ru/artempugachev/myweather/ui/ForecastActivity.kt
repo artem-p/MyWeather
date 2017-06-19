@@ -1,5 +1,7 @@
 package ru.artempugachev.myweather.ui
 
+import android.database.Cursor
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -24,10 +26,12 @@ class ForecastActivity : DrawerActivity() {
         adapter = ForecastAdapter()
         recyclerView.adapter = adapter
 
-        val forecastStub = arrayOf(
-                WeatherData(1496528520, 15.5, 7.5, R.drawable.cloudy, "Cloud", Wind(5.5, 0)),
-                WeatherData(1496528521, 14.6, 6.6, R.drawable.cloudy, "Cloud", Wind(3.5, 90)),
-                WeatherData(1496528522, 13.7, 5.7, R.drawable.cloudy, "Cloud", Wind(1.5, 270)))
 //        adapter.setData(forecastStub)
     }
+
+//    inner class LoadForecastTask : AsyncTask<Unit, Unit, Cursor>() {
+//        override fun doInBackground(vararg params: Unit?): Cursor {
+//
+//        }
+//    }
 }

@@ -29,7 +29,7 @@ class DataProviderTest {
     fun testGetCurData() {
         addRows()
         val curWeather = dataProvider.getCurrentData()
-        assertEquals(1496534400, curWeather?.timestamp)
+        assertEquals(1496528520, curWeather?.timestamp)
     }
 
 
