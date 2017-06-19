@@ -24,25 +24,28 @@ class DarkSkyProvider(private val mApiKey: String) {
     private val UNITS_PARAM_KEY = "units"
     private val UNITS_PARAM_VALUE = "si"
     private val CURRENTLY_JSON_PARAM = "currently"
-    private val HOURLY_JSON_PARAM = "hourly"
+    private val DAILY_JSON_PARAM = "daily"
     private val TIMESTAMP_JSON_PARAM = "time"
     private val SUMMARY_JSON_PARAM = "summary"
     private val ICON_JSON_PARAM = "icon"
     private val TEMPERATURE_JSON_PARAM = "temperature"
+    private val TEMPERATURE_MIN_JSON_PARAM = "temperatureMin"
+    private val TEMPERATURE_MAX_JSON_PARAM = "temperatureMax"
     private val APPARENT_TEMPERATURE_JSON_PARAM = "apparentTemperature"
     private val HUMIDITY_JSON_PARAM = "humidity"
     private val WIND_SPEED_JSON_PARAM = "windSpeed"
     private val WIND_DIR_JSON_PARAM = "windBearing"
+    private val DATA_JSON_PARAM = "dat"
 
 
     @Throws(IOException::class, JSONException::class)
-    fun fetchCurrent(coordinate: Coordinate): Weather {
+    fun fetchWeatherData(coordinate: Coordinate): List<Weather> {
         val url = buildCurrentUrl(coordinate)
         val respStr = fetchByUrl(url)
         val weatherJson = JSONObject(respStr)
         val currentlyJson = weatherJson.getJSONObject(CURRENTLY_JSON_PARAM)
-        val forecastJson = weatherJson.getJSONObject(HOURLY_JSON_PARAM)
-        return buildWeatherFromJson(currentlyJson, forecastJson)
+        val forecastJson = weatherJson.getJSONObject(DAILY_JSON_PARAM)
+        return getWeatherListFromJson(currentlyJson, forecastJson)
     }
 
     @Throws(IOException::class)
@@ -56,22 +59,60 @@ class DarkSkyProvider(private val mApiKey: String) {
     }
 
     @Throws(JSONException::class)
-    fun buildWeatherFromJson(jsonCurrent: JSONObject, jsonForecast: JSONObject): Weather {
-        val timestampStr = jsonCurrent.getString(TIMESTAMP_JSON_PARAM)
-        val summary = jsonCurrent.getString(SUMMARY_JSON_PARAM)
-        val icon = jsonCurrent.getString(ICON_JSON_PARAM)
-        val temperatureStr = jsonCurrent.getString(TEMPERATURE_JSON_PARAM)
-        val apparentTemperatureStr = jsonCurrent.getString(APPARENT_TEMPERATURE_JSON_PARAM)
-        val humidityStr = jsonCurrent.getString(HUMIDITY_JSON_PARAM)
-        val windSpeedStr = jsonCurrent.getString(WIND_SPEED_JSON_PARAM)
-        val windDirStr = jsonCurrent.getString(WIND_DIR_JSON_PARAM)
-        val forecastSummary = jsonForecast.getString(SUMMARY_JSON_PARAM)
+    fun getWeatherListFromJson(jsonCurrent: JSONObject, jsonForecast: JSONObject): List<Weather> {
+        val weatherList: MutableList<Weather> = mutableListOf()
+
+        val currentWeather = getWeatherFromJson(jsonCurrent, false)
+        weatherList.add(currentWeather)
+        val forecastList = getForecastListFromJson(jsonForecast)
+        weatherList.addAll(forecastList)
+
+        val outputWeatherList: List<Weather> = weatherList
+        return outputWeatherList
+    }
+
+    @Throws(JSONException::class)
+    fun getForecastListFromJson(jsonForecast: JSONObject): List<Weather> {
+        val forecastList: MutableList<Weather> = mutableListOf()
+        val forecastJsonArray = jsonForecast.getJSONArray(DATA_JSON_PARAM)
+
+        for (i in 0..(forecastJsonArray.length() - 1)) {
+            val forecastJson = forecastJsonArray.getJSONObject(i)
+            val weather = getWeatherFromJson(forecastJson, true)
+        }
+
+        val outputForecastList: List<Weather> = forecastList
+        return outputForecastList
+    }
+
+    fun getWeatherFromJson(jsonWeather: JSONObject, isForecast: Boolean): Weather {
+        val timestampStr = jsonWeather.getString(TIMESTAMP_JSON_PARAM)
+        val summary = jsonWeather.getString(SUMMARY_JSON_PARAM)
+        val icon = jsonWeather.getString(ICON_JSON_PARAM)
+
+        // get current temperature for current weather and min max for forecast
+        val minTempStr: String
+        val maxTempStr: String
 
         /*
-        * We use the same class for current weather and forecast, as it differs only in temps
-        * So here put current temperature to min and to max as well
-        * */
-        return Weather(timestampStr.toInt(), temperatureStr.toDouble(), temperatureStr.toDouble(),
+       * We use the same class for current weather and forecast, as it differs only in temps
+       * For current weather put current temperature to min and to max as well
+       * */
+        if (!isForecast) {
+            minTempStr = jsonWeather.getString(TEMPERATURE_JSON_PARAM)
+            maxTempStr = jsonWeather.getString(TEMPERATURE_JSON_PARAM)
+        } else {
+            minTempStr = jsonWeather.getString(TEMPERATURE_MIN_JSON_PARAM)
+            maxTempStr = jsonWeather.getString(TEMPERATURE_MAX_JSON_PARAM)
+        }
+
+        val apparentTemperatureStr = jsonWeather.getString(APPARENT_TEMPERATURE_JSON_PARAM)
+        val humidityStr = jsonWeather.getString(HUMIDITY_JSON_PARAM)
+        val windSpeedStr = jsonWeather.getString(WIND_SPEED_JSON_PARAM)
+        val windDirStr = jsonWeather.getString(WIND_DIR_JSON_PARAM)
+        val forecastSummary = jsonWeather.getString(SUMMARY_JSON_PARAM)
+
+        return Weather(timestampStr.toInt(), minTempStr.toDouble(), maxTempStr.toDouble(),
                 icon, summary, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))
     }
 
