@@ -22,6 +22,7 @@ class WeatherContract private constructor(){
             val COLUMN_HUMIDITY = "humidity"
             val COLUMN_PRESSURE = "pressure"
             val COLUMN_WEATHER_ICON = "weather_icon"
+            val COLUMN_WEATHER_DESCRIPTION = "description"
             val COLUMN_WIND_DIRECTION = "wind_direction"
             val COLUMN_WIND_SPEED = "wind_speed"
         }

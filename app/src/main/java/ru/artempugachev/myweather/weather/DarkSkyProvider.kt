@@ -72,7 +72,7 @@ class DarkSkyProvider(private val mApiKey: String) {
         * So here put current temperature to min and to max as well
         * */
         return Weather(timestampStr.toInt(), temperatureStr.toDouble(), temperatureStr.toDouble(),
-                icon, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))
+                icon, summary, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))
     }
 
 

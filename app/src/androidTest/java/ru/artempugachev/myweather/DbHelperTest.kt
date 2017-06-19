@@ -49,6 +49,7 @@ class DbHelperTest {
         cv.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 75)
         cv.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 1015.5)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON, "cloud")
+        cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_DESCRIPTION, "cloud")
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION, 270)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5)
 

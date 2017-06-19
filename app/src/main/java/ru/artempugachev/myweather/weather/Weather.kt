@@ -8,7 +8,7 @@ import ru.artempugachev.myweather.data.WeatherContract
  * Representation of weather
  * */
 class Weather(val timestamp: Int, val minTemp: Double, val maxTemp: Double, val icon: String,
-              val wind: Wind) {
+              val description: String, val wind: Wind) {
 
     /**
      * Transform to data class for binding
@@ -26,6 +26,7 @@ class Weather(val timestamp: Int, val minTemp: Double, val maxTemp: Double, val 
         cv.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, timestamp)
         cv.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE, minTemp)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ICON, icon)
+        cv.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_DESCRIPTION, description)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_DIRECTION, wind.direction)
         cv.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, wind.speed)
 
