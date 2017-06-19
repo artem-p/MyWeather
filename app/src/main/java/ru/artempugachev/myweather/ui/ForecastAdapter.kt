@@ -67,7 +67,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
                         cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE)))
                 maxTempTextView.text = context.getString(R.string.format_temp,
                         cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MAX_TEMPERATURE)))
-//                descriptionTextView.text = cursor.getString(cursor.getColumnIndex(WeatherContract.WeatherEntry.))
+                descriptionTextView.text = cursor.getString(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_DESCRIPTION))
             }
         }
     }
