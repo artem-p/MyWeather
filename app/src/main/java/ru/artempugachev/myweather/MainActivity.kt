@@ -1,23 +1,13 @@
 package ru.artempugachev.myweather
 
 import android.content.Context
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
-import android.support.v4.widget.DrawerLayout
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
 import ru.artempugachev.myweather.data.DataProvider
-import ru.artempugachev.myweather.data.WEATHER_URI
-import ru.artempugachev.myweather.data.getTestWeatherContentValues
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
 import ru.artempugachev.myweather.weather.*
 
@@ -39,7 +29,7 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
         binding.weatherData = curWeatherData
 
         createDrawer()
-        loadCurWeatherData()
+        loadWeatherData()
 
         // todo this is for debug, delete later
         Thread.sleep(1000)
@@ -49,31 +39,16 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
     }
 
 
-    private fun loadTestData() {
-        LoadInitDataTask().execute()
+    private fun loadWeatherData() {
+        FetchWeatherDataTask().execute()
     }
 
-    private fun loadCurWeatherData() {
-        FetchCurrentDataTask().execute()
-    }
-
-
-    /**
-     * We need some data to test loader
-     * */
-    inner class LoadInitDataTask : AsyncTask<Unit, Unit, Unit>() {
-        override fun doInBackground(vararg params: Unit?) {
-            contentResolver.delete(WEATHER_URI, null, null)
-            val weatherDataStub = getTestWeatherContentValues()
-            contentResolver.bulkInsert(WEATHER_URI, weatherDataStub)
-        }
-    }
 
     /**
      * This async task is for test data fetching from darksky
      * Later we'll transform it to job service
      * */
-    inner class FetchCurrentDataTask : AsyncTask<Unit, Unit, Unit>() {
+    inner class FetchWeatherDataTask : AsyncTask<Unit, Unit, Unit>() {
         override fun doInBackground(vararg params: Unit?) {
             val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
             val curWeather = darkSkyProvider.fetchCurrent(Coordinate("59.93", "30.29"))
