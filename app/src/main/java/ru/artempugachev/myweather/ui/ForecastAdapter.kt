@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import ru.artempugachev.myweather.R
 import ru.artempugachev.myweather.data.WeatherContract
-import ru.artempugachev.myweather.weather.WeatherData
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
     lateinit var context: Context
@@ -32,6 +31,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
     override fun getItemCount(): Int {
         // first position in cursor is for current data, so subtract 1 to get forecast elements count
+        // todo cursor with forecast data only
         return cursor.count - 1
     }
 
@@ -46,7 +46,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
     }
 
     class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val timeTextView: TextView = view.findViewById(R.id.date) as TextView
+        val timeTextView: TextView = view.findViewById(R.id.forecast_date) as TextView
         val minTempTextView: TextView = view.findViewById(R.id.min_temperature) as TextView
         val maxTempTextView: TextView = view.findViewById(R.id.max_temperature) as TextView
         val descriptionTextView: TextView = view.findViewById(R.id.description) as TextView
@@ -57,12 +57,13 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
         fun bindForecast(cursor: Cursor, position: Int, context: Context) {
             // First position in cursor is current data. We don't need it here, in forecast
             // So get data from cursor with index as position + 1
+            // todo cursor with forecast data only
 
             val cursorPosition: Int = position + 1
 
             if (position < cursor.count) {
                 cursor.moveToPosition(position)
-                timeTextView.text = context.getString(cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP)))
+                timeTextView.text = cursor.getInt(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP)).toString()
                 minTempTextView.text = context.getString(R.string.format_temp,
                         cursor.getDouble(cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE)))
                 maxTempTextView.text = context.getString(R.string.format_temp,

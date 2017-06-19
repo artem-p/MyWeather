@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import ru.artempugachev.myweather.DrawerActivity
 import ru.artempugachev.myweather.R
+import ru.artempugachev.myweather.data.WEATHER_URI
 import ru.artempugachev.myweather.weather.WeatherData
 import ru.artempugachev.myweather.weather.Wind
 
@@ -26,12 +27,15 @@ class ForecastActivity : DrawerActivity() {
         adapter = ForecastAdapter()
         recyclerView.adapter = adapter
 
-//        adapter.setData(forecastStub)
+        LoadForecastTask().execute()
     }
 
-//    inner class LoadForecastTask : AsyncTask<Unit, Unit, Cursor>() {
-//        override fun doInBackground(vararg params: Unit?): Cursor {
-//
-//        }
-//    }
+    inner class LoadForecastTask : AsyncTask<Unit, Unit, Unit>() {
+        override fun doInBackground(vararg params: Unit?) {
+            val cursor: Cursor = contentResolver.query(WEATHER_URI,
+                    null, null, null, null)
+
+            adapter.swapCursor(cursor)
+        }
+    }
 }

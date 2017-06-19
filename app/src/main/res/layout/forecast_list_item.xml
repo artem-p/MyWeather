@@ -21,7 +21,7 @@
         tools:src="@drawable/cloudy"/>
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/forecast_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/list_item_date_left_margin"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/secondary_text"
-        app:layout_constraintLeft_toLeftOf="@+id/date"
+        app:layout_constraintLeft_toLeftOf="@+id/forecast_date"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         tools:text="Rainy"/>
 
