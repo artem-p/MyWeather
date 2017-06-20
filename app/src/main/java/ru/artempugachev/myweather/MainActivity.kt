@@ -23,16 +23,16 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val weather: Weather = Weather(1, 14.4, 7.5, "cloud", "Cloud", Wind(0.0, 0))
-        curWeatherData = weather.toWeatherData()
-
-        binding.weatherData = curWeatherData
+//        val weather: Weather = Weather(1, 14.4, 7.5, "cloud", "Cloud", Wind(0.0, 0))
+//        curWeatherData = weather.toWeatherData()
+//
+//        binding.weatherData = curWeatherData
 
         createDrawer()
         loadWeatherData()
 
         // todo this is for debug, delete later
-        Thread.sleep(1000)
+        Thread.sleep(1500)
         /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
@@ -53,8 +53,11 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
             val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
             val weatherData = darkSkyProvider.fetchWeatherData(Coordinate("59.93", "30.29"))
 
-            val dataProvider = DataProvider(this@MainActivity)
-            dataProvider.writeWeather(weatherData)
+            if (!weatherData.isEmpty()) {
+                val dataProvider = DataProvider(this@MainActivity)
+                dataProvider.deleteData()
+                dataProvider.writeWeather(weatherData)
+            }
         }
     }
 

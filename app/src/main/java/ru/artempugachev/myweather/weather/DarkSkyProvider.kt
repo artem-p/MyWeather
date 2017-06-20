@@ -35,7 +35,7 @@ class DarkSkyProvider(private val mApiKey: String) {
     private val HUMIDITY_JSON_PARAM = "humidity"
     private val WIND_SPEED_JSON_PARAM = "windSpeed"
     private val WIND_DIR_JSON_PARAM = "windBearing"
-    private val DATA_JSON_PARAM = "dat"
+    private val DATA_JSON_PARAM = "data"
 
 
     @Throws(IOException::class, JSONException::class)
@@ -79,6 +79,7 @@ class DarkSkyProvider(private val mApiKey: String) {
         for (i in 0..(forecastJsonArray.length() - 1)) {
             val forecastJson = forecastJsonArray.getJSONObject(i)
             val weather = getWeatherFromJson(forecastJson, true)
+            forecastList.add(weather)
         }
 
         val outputForecastList: List<Weather> = forecastList
@@ -106,11 +107,11 @@ class DarkSkyProvider(private val mApiKey: String) {
             maxTempStr = jsonWeather.getString(TEMPERATURE_MAX_JSON_PARAM)
         }
 
-        val apparentTemperatureStr = jsonWeather.getString(APPARENT_TEMPERATURE_JSON_PARAM)
+//        val apparentTemperatureStr = jsonWeather.getString(APPARENT_TEMPERATURE_JSON_PARAM)
         val humidityStr = jsonWeather.getString(HUMIDITY_JSON_PARAM)
         val windSpeedStr = jsonWeather.getString(WIND_SPEED_JSON_PARAM)
         val windDirStr = jsonWeather.getString(WIND_DIR_JSON_PARAM)
-        val forecastSummary = jsonWeather.getString(SUMMARY_JSON_PARAM)
+//        val forecastSummary = jsonWeather.getString(SUMMARY_JSON_PARAM)
 
         return Weather(timestampStr.toInt(), minTempStr.toDouble(), maxTempStr.toDouble(),
                 icon, summary, Wind(windSpeedStr.toDouble(), windDirStr.toInt()))

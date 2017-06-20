@@ -51,4 +51,11 @@ class DataProvider(val context: Context) {
             val rowsInserted = context.contentResolver.bulkInsert(WEATHER_URI, weatherCvArray)
         }
     }
+
+    /**
+     * Delete all the data
+     * */
+    fun deleteData() {
+        context.contentResolver.delete(WEATHER_URI, null, null)
+    }
 }

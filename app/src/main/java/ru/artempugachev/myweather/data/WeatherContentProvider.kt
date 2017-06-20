@@ -179,7 +179,7 @@ fun getTestWeatherContentValues(): Array<ContentValues> {
     cv3.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, 5)
 
     val cv4: ContentValues = ContentValues()
-    cv4.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496630800)
+    cv4.put(WeatherContract.WeatherEntry.COLUMN_TIMESTAMP, 1496630801)
     cv4.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMPERATURE, 14.6)
     cv4.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMPERATURE, 15.6)
     cv4.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, 75)
