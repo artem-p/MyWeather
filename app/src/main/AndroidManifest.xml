@@ -34,6 +34,9 @@
             android:name="ru.artempugachev.myweather.data.WeatherContentProvider"
             android:exported="false">
         </provider>
+
+        <service android:name=".data.WeatherSyncService"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package ru.artempugachev.myweather
 
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
 import ru.artempugachev.myweather.data.DataProvider
+import ru.artempugachev.myweather.data.WeatherSyncService
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
 import ru.artempugachev.myweather.weather.*
 
@@ -23,33 +25,12 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         createDrawer()
-        loadWeatherData()
+        val weatherSyncIntent = Intent(this@MainActivity, WeatherSyncService::class.java)
+        startService(weatherSyncIntent)
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
     }
 
-
-    private fun loadWeatherData() {
-        FetchWeatherDataTask().execute()
-    }
-
-
-    /**
-     * This async task is for test data fetching from darksky
-     * Later we'll transform it to job service
-     * */
-    inner class FetchWeatherDataTask : AsyncTask<Unit, Unit, Unit>() {
-        override fun doInBackground(vararg params: Unit?) {
-            val darkSkyProvider = DarkSkyProvider(BuildConfig.DARK_SKY_API_KEY)
-            val weatherData = darkSkyProvider.fetchWeatherData(Coordinate("59.93", "30.29"))
-
-            if (!weatherData.isEmpty()) {
-                val dataProvider = DataProvider(this@MainActivity)
-                dataProvider.deleteData()
-                dataProvider.writeWeather(weatherData)
-            }
-        }
-    }
 
     /**
      * Loader methods
