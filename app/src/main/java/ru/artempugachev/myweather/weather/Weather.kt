@@ -15,7 +15,7 @@ class Weather(val timestamp: Int, val minTemp: Double, val maxTemp: Double, val 
      */
     fun toWeatherData(): WeatherData {
         // todo stub
-        return WeatherData(timestamp, minTemp, maxTemp, R.drawable.cloudy, "Cloudy", wind)
+        return WeatherData(timestamp, minTemp, maxTemp, R.drawable.cloudy, description, wind)
     }
 
     /**

@@ -21,19 +21,9 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        val weather: Weather = Weather(1, 14.4, 7.5, "cloud", "Cloud", Wind(0.0, 0))
-//        curWeatherData = weather.toWeatherData()
-//
-//        binding.weatherData = curWeatherData
-
         createDrawer()
         loadWeatherData()
-
-        // todo this is for debug, delete later
-        Thread.sleep(1500)
-        /////////////////////////////////////////
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
     }
