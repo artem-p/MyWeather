@@ -1,23 +1,22 @@
 package ru.artempugachev.myweather
 
 import android.content.Context
-import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.AsyncTaskLoader
 import android.support.v4.content.Loader
 import ru.artempugachev.myweather.data.DataProvider
-import ru.artempugachev.myweather.data.WeatherSyncService
+import ru.artempugachev.myweather.data.WeatherSyncJobInitializer
+import ru.artempugachev.myweather.data.startWeatherSyncNow
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
-import ru.artempugachev.myweather.weather.*
+import ru.artempugachev.myweather.weather.WeatherData
+
 
 val WEATHER_LOADER_ID = 42
 
 class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
     lateinit var binding: ActivityMainBinding
-    lateinit var curWeatherData: WeatherData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +24,10 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         createDrawer()
-        val weatherSyncIntent = Intent(this@MainActivity, WeatherSyncService::class.java)
-        startService(weatherSyncIntent)
+
+        val weatherSyncJobInitializer = WeatherSyncJobInitializer()
+        weatherSyncJobInitializer.scheduleWeatherSyncJobService(this)
+        startWeatherSyncNow(this)
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
     }

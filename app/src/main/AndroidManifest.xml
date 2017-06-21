@@ -37,6 +37,13 @@
 
         <service android:name=".data.WeatherSyncService"
             android:exported="false"/>
+
+        <service android:name=".data.WeatherSyncJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
