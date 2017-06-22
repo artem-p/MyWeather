@@ -5,4 +5,6 @@
     <string name="weather_default">Cloudy</string>
     <string name="now_label">Now</string>
     <string name="forecast_label">Forecast</string>
+    <string name="notification_title">Just weather notification</string>
+    <string name="notification_text">Tap this notification to open weather app</string>
 </resources>
