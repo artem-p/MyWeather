@@ -6,4 +6,5 @@
     <color name="drawer">#ffeeeeee</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
+    <color name="widgetBackground">#fff</color>
 </resources>
