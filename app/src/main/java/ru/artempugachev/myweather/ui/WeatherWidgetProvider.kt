@@ -19,8 +19,10 @@ class WeatherWidgetProvider : AppWidgetProvider() {
         for (i in 0..widgetCount - 1) {
             val appWidgetId = appWidgetIds[i]
 
+            val curWeatherData = dataProvider.getCurrentData()
             val views = RemoteViews(context.packageName, R.layout.weather_widget)
-            views.setTextViewText(R.id.widgetTempTextView, context.getString(R.string.format_temp, 12.0))
+            views.setTextViewText(R.id.widgetTempTextView, context.getString(R.string.format_temp,
+                    curWeatherData?.minTemp))
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
