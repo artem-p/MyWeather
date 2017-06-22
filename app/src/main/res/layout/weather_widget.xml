@@ -14,5 +14,6 @@
         android:layout_centerVertical="true"
         android:textSize="@dimen/widget_text_size"
         android:textColor="@color/colorPrimary"
+        android:id="@+id/widgetTempTextView"
         />
 </RelativeLayout>
