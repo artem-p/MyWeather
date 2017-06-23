@@ -10,7 +10,7 @@ import ru.artempugachev.myweather.data.DataProvider
 import ru.artempugachev.myweather.data.WeatherSyncJobInitializer
 import ru.artempugachev.myweather.data.startWeatherSyncNow
 import ru.artempugachev.myweather.databinding.ActivityMainBinding
-import ru.artempugachev.myweather.ui.NotificationWrapper
+import ru.artempugachev.myweather.ui.WeatherNotificatinReceiver
 import ru.artempugachev.myweather.weather.WeatherData
 
 
@@ -32,8 +32,8 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
 
-        val notificationWrapper = NotificationWrapper()
-        notificationWrapper.showWeatherNotification(this)
+        val notificationReceivier = WeatherNotificatinReceiver()
+        notificationReceivier.setAlarm(this)
     }
 
 
