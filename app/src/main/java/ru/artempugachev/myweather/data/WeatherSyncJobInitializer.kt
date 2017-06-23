@@ -9,8 +9,7 @@ import java.util.concurrent.TimeUnit
  */
 
 private val WEATHER_SYNC_TAG = "weather-sync"
-private val SYNC_INTERVAL_HOURS = 1
-private val SYNC_INTERVAL_SECONDS = TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS.toLong()).toInt()
+private val SYNC_INTERVAL_SECONDS = 600
 private val SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 3
 
 
