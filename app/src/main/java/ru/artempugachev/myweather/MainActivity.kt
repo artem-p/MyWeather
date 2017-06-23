@@ -32,8 +32,8 @@ class MainActivity : DrawerActivity(), LoaderCallbacks<WeatherData> {
 
         supportLoaderManager.initLoader(WEATHER_LOADER_ID, null, this)
 
-        val notificationReceivier = WeatherNotificatinReceiver()
-        notificationReceivier.setAlarm(this)
+        val notificationReceiver = WeatherNotificatinReceiver()
+        notificationReceiver.setAlarm(this)
     }
 
 
