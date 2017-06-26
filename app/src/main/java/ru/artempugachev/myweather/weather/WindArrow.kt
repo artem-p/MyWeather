@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.accessibility.AccessibilityEvent
 import android.widget.FrameLayout
 import android.widget.ImageView
 import ru.artempugachev.myweather.R
@@ -14,10 +15,10 @@ import ru.artempugachev.myweather.weather.Wind
  */
 
 class WindArrow(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
-
+    lateinit var wind: Wind
     fun setDirection(direction: Int) {
         val arrowImageView = findViewById(R.id.windArrowImageView) as ImageView
-        val wind = Wind(0.0, direction)
+        wind = Wind(0.0, direction)
         val arrowResource = wind.toWindArrowResource()
         arrowImageView.setImageResource(arrowResource)
     }
@@ -29,5 +30,11 @@ class WindArrow(context: Context, attrs: AttributeSet?) : FrameLayout(context, a
         val windDir: Int = attrArray.getInt(R.styleable.WindArrow_direction, 0)
         attrArray.recycle()
         setDirection(windDir)
+    }
+
+    override fun onPopulateAccessibilityEvent(event: AccessibilityEvent?) {
+        super.onPopulateAccessibilityEvent(event)
+
+        event?.text?.add(wind.direction.toString())
     }
 }
