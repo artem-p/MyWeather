@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Weather" parent="@style/AppTheme">
+        <item name="android:textStyle">bold|italic</item>
+    </style>
 </resources>
